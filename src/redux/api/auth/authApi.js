@@ -1,0 +1,24 @@
+import baseApi from "../baseApi";
+
+const authApi = baseApi.injectEndpoints({
+    endpoints: (build) => ({
+        singup: build.mutation({
+            query: (userData) => ({
+                url: `/user/create`,
+                method: "POST",
+                body: userData,
+            })
+        }),
+        login: build.mutation({
+            query: (credentials) => ({
+                url: "/auth/login",
+                method: "POST",
+                body: credentials,
+            })
+        })
+    }),
+})
+
+
+export const { useSingupMutation, useLoginMutation } = authApi;
+export default authApi;

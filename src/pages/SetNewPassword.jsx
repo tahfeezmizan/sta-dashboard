@@ -31,7 +31,7 @@ export default function SetNewPassword() {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div className="relative">
-                        <label className="block text-sm font-medium text-gray-700">Password</label>
+                        <label className="block text-sm font-medium text-gray-700">New Password</label>
                         <input
                             type={showPassword ? "text" : "password"}
                             {...register("password", { required: "Password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
@@ -41,11 +41,11 @@ export default function SetNewPassword() {
                         <button type="button" onClick={togglePasswordVisibility} className="absolute right-3 top-9 text-gray-500">
                             {showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
                         </button>
-                        {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+                        {errors.newPassword && <p className="text-red-500 text-xs mt-1">{errors.newPassword.message}</p>}
                     </div>
 
                     <div className="relative">
-                        <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <label className="block text-sm font-medium text-gray-700">Confirm New Password</label>
                         <input
                             type={showConfirmPassword ? "text" : "password"}
                             {...register("confirmPassword", { required: "Confirm Password is required" })}
@@ -55,11 +55,11 @@ export default function SetNewPassword() {
                         <button type="button" onClick={passwordToggle} className="absolute right-3 top-9 text-gray-500">
                             {showConfirmPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
                         </button>
-                        {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>}
+                        {errors.confirmNewPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmNewPassword.message}</p>}
                     </div>
 
                     <div className="text-center">
-                        <button type="submit" className="px-4 bg-pink-500 text-white py-2 rounded hover:bg-pink-600">Sing Up</button>
+                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">Sing Up</button>
                     </div>
                 </form>
             </div>

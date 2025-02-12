@@ -33,7 +33,7 @@ export default function ForgotPassword() {
 
 
                     <div className="text-center">
-                        <button type="submit" className="px-4 bg-pink-500 text-white py-2 rounded hover:bg-pink-600">Sign In</button>
+                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">Sign In</button>
                     </div>
                 </form>
             </div>

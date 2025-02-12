@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +19,16 @@ export default function Login() {
     };
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
+    axios.post("https://outlet-appointment-booking.onrender.com/v1/auth/login", data)
+    .then((response) => {
+        console.log(response.data);
+        toast("Login Succssfully!")
+    })
+    .catch(err => {
+        toast.error(err.message)
+        
+    })
     };
 
     return (
@@ -61,7 +72,7 @@ export default function Login() {
                     </div>
 
                     <div className="text-center">
-                        <button type="submit" className="px-4 bg-pink-500 text-white py-2 rounded hover:bg-pink-600">Sign In</button>
+                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">Sign In</button>
                     </div>
                 </form>
 

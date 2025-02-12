@@ -2,11 +2,15 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import axios from 'axios';
+import { toast } from "react-toastify";
 
 
 export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+
 
     const {
         register,
@@ -23,7 +27,18 @@ export default function Register() {
     };
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
+    axios.post("https://outlet-appointment-booking.onrender.com/v1/user/create", data)
+    .then((response) => {
+        console.log(response.data);
+        toast.success("Registration Succssfully!")
+    })
+    .catch(err => {
+        console.log(err);
+        
+        toast.error("Somthing Went Wrong!!")
+        
+    })
     };
 
 
@@ -96,13 +111,14 @@ export default function Register() {
                     </div>
 
                     <div className="text-center">
-                        <button type="submit" className="px-4 bg-pink-500 text-white py-2 rounded hover:bg-pink-600">Sing Up</button>
+                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">Sing Up</button>
                     </div>
                 </form>
 
                 <p className="text-center text-sm text-gray-600 mt-4">
                     Have an account?
                     <Link to="/login" className="text-pink-500 hover:underline"> Log in</Link>
+                    <Link to="/dashboard" className="text-pink-500 hover:underline"> Log in</Link>
                 </p>
             </div>
         </div>

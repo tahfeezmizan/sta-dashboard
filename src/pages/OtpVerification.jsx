@@ -42,7 +42,7 @@ export default function OtpVerification() {
 
                     <button
                         type="submit"
-                        className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition"
+                        className="w-full bg-[#ED1E79] text-white py-2 rounded-lg hover:bg-pink-600 transition"
                     >
                         Verify Code
                     </button>

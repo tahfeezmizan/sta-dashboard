@@ -7,6 +7,12 @@ const authSlice = createSlice({
         loading: false,
         error: null,
     },
+    loginUserData: (state, action) => {
+        state.isAuthenticated = true;
+        state.user = action.payload;
+        state.isLoading = false;
+      },
+
 });
 
 export default authSlice.reducer;
