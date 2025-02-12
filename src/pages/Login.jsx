@@ -22,7 +22,7 @@ export default function Login() {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+            <div className="bg-white p-14 rounded-lg shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-semibold text-center mb-4">Log in to your account</h2>
                 <p className="text-center text-gray-500 mb-6">Please enter your email and password to continue</p>
 
