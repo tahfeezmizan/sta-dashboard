@@ -4,6 +4,7 @@ import DashboardSummaryCards from './DashboardSummaryCards/DashboardSummaryCards
 import BarCharts from './Chars/BarCharts'
 import AreaChart from './Chars/AreaChart'
 import OutletStatisticsChart from './Chars/OutletStatisticsChart'
+import FeedbackTable from './FeedbackTable/FeedbackTable'
 
 export default function Dashboard() {
     return (
@@ -16,6 +17,7 @@ export default function Dashboard() {
                     <BarCharts />
                     <AreaChart />
                     <OutletStatisticsChart />
+                    <FeedbackTable />
                 </div>
             </div>
         </div>

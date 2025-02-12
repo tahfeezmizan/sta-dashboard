@@ -5,6 +5,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import SetNewPassword from "../pages/SetNewPassword";
 import OtpVerification from "../pages/OtpVerification";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Profile from "../pages/Dashboard/Profile";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <Dashboard />,
     },
+    {
+        path: 'profile',
+        element: <Profile />
+    }
 ]);
 
 export default router;
