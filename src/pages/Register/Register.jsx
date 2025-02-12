@@ -1,16 +1,15 @@
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import axios from 'axios';
+import { Link } from "react-router-dom";
+import { useSingupMutation } from "../../redux/api/auth/authApi";  // Import the hook
 import { toast } from "react-toastify";
-
 
 export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-
+    const [singup, { isLoading, error }] = useSingupMutation();
 
     const {
         register,
@@ -26,21 +25,17 @@ export default function Register() {
         setShowConfirmPassword(!showConfirmPassword);
     };
 
-    const onSubmit = (data) => {
-        // console.log(data);
-    axios.post("https://outlet-appointment-booking.onrender.com/v1/user/create", data)
-    .then((response) => {
-        console.log(response.data);
-        toast.success("Registration Succssfully!")
-    })
-    .catch(err => {
-        console.log(err);
-        
-        toast.error("Somthing Went Wrong!!")
-        
-    })
-    };
+    const onSubmit = async (data) => {
+        try {
+            await singup(data).unwrap();
+            console.log("Registration successful!", data);
+            toast("User Register Sucessfully")
 
+        } catch (err) {
+            console.error("Registration failed:", err);
+            toast.error(error.message)
+        }
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -111,16 +106,21 @@ export default function Register() {
                     </div>
 
                     <div className="text-center">
-                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">Sing Up</button>
+                        <button
+                            type="submit"
+                            className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Signing Up..." : "Sign Up"}
+                        </button>
                     </div>
                 </form>
 
                 <p className="text-center text-sm text-gray-600 mt-4">
                     Have an account?
                     <Link to="/login" className="text-pink-500 hover:underline"> Log in</Link>
-                    <Link to="/dashboard" className="text-pink-500 hover:underline"> Log in</Link>
                 </p>
             </div>
         </div>
-    )
+    );
 }

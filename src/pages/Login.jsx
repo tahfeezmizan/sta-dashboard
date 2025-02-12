@@ -1,12 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import { useLoginMutation } from "../redux/api/auth/authApi";
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate(); // For redirecting after login
+
+    const [login, { isLoading, error }] = useLoginMutation();
 
     const {
         register,
@@ -18,17 +23,15 @@ export default function Login() {
         setShowPassword(!showPassword);
     };
 
-    const onSubmit = (data) => {
-        // console.log(data);
-    axios.post("https://outlet-appointment-booking.onrender.com/v1/auth/login", data)
-    .then((response) => {
-        console.log(response.data);
-        toast("Login Succssfully!")
-    })
-    .catch(err => {
-        toast.error(err.message)
-        
-    })
+    const onSubmit = async (data) => {
+        try {
+            await login(data).unwrap();
+            console.log("Registration successful!", data);
+            toast("User Register Sucessfully")
+            navigate('/dashboard')
+        } catch (error) {
+            toast.error(error.message)
+        }
     };
 
     return (

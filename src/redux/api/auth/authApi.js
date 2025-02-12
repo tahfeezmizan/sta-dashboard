@@ -7,6 +7,7 @@ const authApi = baseApi.injectEndpoints({
                 url: `/user/create`,
                 method: "POST",
                 body: userData,
+                credentials: "omit"
             })
         }),
         login: build.mutation({
@@ -14,6 +15,7 @@ const authApi = baseApi.injectEndpoints({
                 url: "/auth/login",
                 method: "POST",
                 body: credentials,
+                credentials: "omit"
             })
         })
     }),
