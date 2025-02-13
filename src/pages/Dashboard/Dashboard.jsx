@@ -6,6 +6,7 @@ import DashboardSummaryCards from './DashboardSummaryCards/DashboardSummaryCards
 import FeedbackTable from './FeedbackTable/FeedbackTable'
 
 export default function Dashboard() {
+
     return (
         <div>
             <div className="w-4/5 mx-auto p-4">

@@ -21,7 +21,7 @@ export default function OtpVerification() {
             console.log("Verified Res", result);
             toast.success("OTP verified successfully!");
         } catch (error) {
-            console.log(error);
+            console.log("OTP Error",error);
             toast.error(error?.data?.message || "Invalid OTP, please try again.");
         }
     };

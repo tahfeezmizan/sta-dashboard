@@ -60,7 +60,7 @@ const authApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: data,
             }),
-        })
+        }),
     }),
 })
 
@@ -71,8 +71,8 @@ export const {
     useSingupMutation,
     useVerifyOTPMutation,
     useVerifyEmailMutation,
+    useSendForgetOtpMutation,
     useChangePasswordMutation,
-    useSendForgetPasswordOTPMutation,
     useResendVerificationCodeMutation,
 } = authApi;
 export default authApi;

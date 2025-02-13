@@ -2,15 +2,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import { useSingupMutation } from "../../redux/api/auth/authApi";  // Import the hook
 import { toast } from "react-toastify";
+import { useSingupMutation } from "../../redux/api/auth/authApi";
 
 export default function Register() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-    const [singup, { isLoading, error }] = useSingupMutation();
+    const [singup, { isLoading, error }] = useSingupMutation();    
 
     const {
         register,
@@ -30,13 +29,11 @@ export default function Register() {
         try {
             const res = await singup(data).unwrap();
             console.log("Registration successful!", res);
-
             toast("User Register Sucessfully");
-
             navigate(`/otp-verification/${data.email}`)
         } catch (err) {
             console.error("Registration failed:", err);
-            toast.error(error.message)
+            toast.error(error?.message)
         }
     };
 

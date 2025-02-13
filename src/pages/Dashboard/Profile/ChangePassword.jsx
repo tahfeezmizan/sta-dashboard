@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import { useChangePasswordMutation } from '../../../redux/api/auth/authApi';
-import { useParams } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { useChangePasswordMutation } from "../../../redux/api/auth/authApi";
+import { toast } from "react-toastify";
 
 export default function ChangePassword() {
+    const [userEmail, setUserEmail] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [changePassword, { isLoading, isError, isSuccess }] = useChangePasswordMutation();
-    const userEmail = useParams();
-    console.log("change user pass", userEmail);
 
+    useEffect(() => {
+        const storedData = localStorage.getItem("persist:auth");
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            const user = JSON.parse(parsedData.user);
+            setUserEmail(user.email);
+        }
+    }, []);
 
     const {
         register,
@@ -28,15 +34,18 @@ export default function ChangePassword() {
     };
 
     const onSubmit = async (data) => {
+        console.log("change pass", data);
+
         try {
-            await changePassword({
-                email: 'fahad@gmail.com',
+            const res = await changePassword({
+                email: userEmail,
                 oldPassword: data.password,
-                newPassword: data.newPassword
+                newPassword: data.newPassword,
             }).unwrap();
-            alert('Password changed successfully');
+            console.log("Pass Change REs", res);
+            toast("Password changed successfully");
         } catch (error) {
-            alert('Failed to change password');
+            toast.error("Failed to change password");
         }
     };
 
@@ -86,7 +95,7 @@ export default function ChangePassword() {
                     </div>
                     <div className="text-center">
                         <button type="submit" className="w-full px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600" disabled={isLoading}>
-                            {isLoading ? 'Processing...' : 'Change Password'}
+                            {isLoading ? "Processing..." : "Change Password"}
                         </button>
                         {isSuccess && <p className="text-green-500 text-xs mt-1">Password changed successfully</p>}
                         {isError && <p className="text-red-500 text-xs mt-1">Failed to change password</p>}

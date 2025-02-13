@@ -37,7 +37,7 @@ export default function Login() {
 
             // console.log(result.data.accessToken);
             toast("User Register Sucessfully")
-            navigate('/otp-verification')
+            navigate('/dashboard')
 
         } catch (error) {
             toast.error(error.message)

@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../../redux/features/authSlices/authSlices';
+
 
 export default function DashboardHeader() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(!true);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logOut());
+        navigate('/')
+    };
 
     return (
         <nav className="bg-[#ED1E79] flex justify-between items-center text-white">
@@ -11,8 +21,7 @@ export default function DashboardHeader() {
                 <div className="relative">
                     <div
                         className="flex items-center space-x-2 cursor-pointer"
-                        onClick={() => setIsDropdownOpen(true)}
-
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}  // Toggle dropdown
                     >
                         <img
                             src="https://png.pngtree.com/png-clipart/20191122/original/pngtree-user-icon-isolated-on-abstract-background-png-image_5192004.jpg"
@@ -34,9 +43,12 @@ export default function DashboardHeader() {
                             <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-200">
                                 Dashboard
                             </Link>
-                            <Link to="/logout" className="block px-4 py-2 hover:bg-gray-200">
+                            <button
+                                onClick={handleLogout}  // Logout button now dispatches logOut
+                                className="block w-full px-4 py-2 text-left hover:bg-gray-200"
+                            >
                                 Logout
-                            </Link>
+                            </button>
                         </div>
                     )}
                 </div>

@@ -4,10 +4,10 @@ const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: fetchBaseQuery({
         baseUrl: "https://outlet-appointment-booking.onrender.com/v1",
-        credentials: "include",
+        // credentials: "include",
         prepareHeaders: (headers) => {
             const token = localStorage.getItem("token");
-
+            
             if (token) {
                 headers.set("Authorization", `Bearer ${token}`);
             }
