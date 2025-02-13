@@ -10,6 +10,7 @@ import Profile from "../pages/Dashboard/Profile/Profile";
 import UserTable from "../pages/Dashboard/Profile/UserTable";
 import App from "../App";
 import DashboardLayOut from "../layout/DashboardLayOut";
+import ForgotOtp from "../pages/ForgotOtp";
 
 const router = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
                 element: <Login />,
             },
             {
-                path: "/forgot-password/",
+                path: "/forgot-password",
                 element: <ForgotPassword />,
             },
             {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "/otp-verification/:email",
                 element: <OtpVerification />,
+            },
+            {
+                path: "/forgot-opt/:email",
+                element: <ForgotOtp />,
             },
         ]
     },

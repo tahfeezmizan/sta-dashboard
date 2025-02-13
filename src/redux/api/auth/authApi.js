@@ -10,6 +10,7 @@ const authApi = baseApi.injectEndpoints({
                 credentials: "omit"
             })
         }),
+
         login: build.mutation({
             query: (credentials) => ({
                 url: "/auth/login",
@@ -18,6 +19,7 @@ const authApi = baseApi.injectEndpoints({
                 credentials: "omit"
             })
         }),
+
         verifyEmail: build.mutation({
             query: (emailData) => ({
                 url: "/user/auth/verify-email",
@@ -25,6 +27,7 @@ const authApi = baseApi.injectEndpoints({
                 body: emailData
             })
         }),
+
         resendVerificationCode: build.mutation({
             query: (resendCodeData) => ({
                 url: "/user/auth/email-verification/resend-code",
@@ -33,20 +36,22 @@ const authApi = baseApi.injectEndpoints({
             })
         }),
 
-        sendForgetPasswordOTP: build.mutation({
+        sendForgetOtp: build.mutation({
             query: (email) => ({
-                url: "/auth/forget-password/send-otp",
-                method: "POST",
-                body: email
-            })
-        }),
-        verifyOTP: build.mutation({
-            query: ({ email, code }) => ({
-                url: '/user/auth/verify-email',
+                url: `/user/forget-password`,
                 method: 'POST',
-                body: { email, code },
+                body: { email },
             }),
         }),
+
+        verifyForgotOtp: build.mutation({
+            query: ({ email, otp }) => ({
+                url: "/auth/verify-otp",
+                method: "POST",
+                body: { email, otp },
+            }),
+        }),
+
         resendVerificationCode: build.mutation({
             query: ({ email }) => ({
                 url: '/user/auth/email-verification/resend-code',
@@ -69,10 +74,10 @@ export const {
     resendCodeData,
     useLoginMutation,
     useSingupMutation,
-    useVerifyOTPMutation,
     useVerifyEmailMutation,
     useSendForgetOtpMutation,
     useChangePasswordMutation,
+    useVerifyForgotOtpMutation,
     useResendVerificationCodeMutation,
 } = authApi;
 export default authApi;

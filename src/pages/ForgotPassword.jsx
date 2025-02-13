@@ -1,10 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useSendForgetPasswordOTPMutation } from '../redux/api/auth/authApi';
+import { useSendForgetOtpMutation } from '../redux/api/auth/authApi';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function ForgotPassword() {
-    const [] =
+    const [sendForgetOtp, { isLoading, error }] = useSendForgetOtpMutation();
+    const navigate = useNavigate(); // Initialize navigate
 
     const {
         register,
@@ -12,20 +14,20 @@ export default function ForgotPassword() {
         formState: { errors },
     } = useForm();
 
-
     const onSubmit = async (data) => {
-        const email = data.email
-        console.log("Regusest Email ", email);
+        const email = data.email;
+        console.log("Requested Email: ", email);
+
         try {
-            const result = await sendOtp(email).unwrap();
-            console.log('Backend Response', result);
-            toast.success("OTP sent successfully! Check your email.");
+            const res = await sendForgetOtp(email).unwrap();
+            console.log("OTP Sent: ", res);
+            toast.success('OTP sent successfully to your email!');
+            navigate('/otp-verification');
 
-        } catch (error) {
-            console.log(error);
-            toast.error(error?.data?.message || "Failed to send OTP.");
+        } catch (err) {
+            console.error("Error sending OTP:", err);
+            toast.error('Failed to send OTP. Please try again.');
         }
-
     };
 
     return (
@@ -45,12 +47,15 @@ export default function ForgotPassword() {
                         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
 
-
                     <div className="text-center">
-                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">Send Code</button>
+                        <button type="submit" className="px-4 bg-[#ED1E79] text-white py-2 rounded hover:bg-pink-600">
+                            {isLoading ? 'Sending...' : 'Send Code'}
+                        </button>
                     </div>
                 </form>
+
+                {error && <p className="text-red-500 text-center mt-2">Failed to send OTP. Please try again.</p>}
             </div>
         </div>
-    )
+    );
 }

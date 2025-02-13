@@ -2,12 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useResendVerificationCodeMutation, useVerifyEmailMutation } from '../redux/api/auth/authApi';
+import { useVerifyForgotOtpMutation } from '../redux/api/auth/authApi';
 
-export default function OtpVerification() {
+export default function ForgotOtp() {
     const { register, handleSubmit, setFocus } = useForm();
-    const [verifyOTP, { isLoading, error }] = useVerifyEmailMutation();
-    const [resendVerificationCode] = useResendVerificationCodeMutation();
+    const [sendForgetOtp, { isLoading, error }] = useVerifyForgotOtpMutation();
     const param = useParams();
     const email = param.email;
 
@@ -16,7 +15,7 @@ export default function OtpVerification() {
         console.log('Verification Code:', code);
 
         try {
-            const result = await verifyOTP({ email, code }).unwrap();
+            const result = await sendForgetOtp({ email, code }).unwrap();
             console.log("Verified Res", result);
             toast.success("OTP verified successfully!");
         } catch (error) {
