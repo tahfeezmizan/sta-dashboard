@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useSendForgetPasswordOTPMutation } from '../redux/api/auth/authApi';
+import { toast } from 'react-toastify';
 
 export default function ForgotPassword() {
+
+    const [sendOtp, { isLoading }
+    ] = useSendForgetPasswordOTPMutation()
 
     const {
         register,
@@ -11,9 +15,18 @@ export default function ForgotPassword() {
     } = useForm();
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data);
-        const navigate = useNavigate(); 
+        try {
+            const result = await sendOtp(email).unwrap();
+            console.log(result);
+            toast.success("OTP sent successfully! Check your email.");
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error?.data?.message || "Failed to send OTP.");
+        }
+
     };
 
     return (

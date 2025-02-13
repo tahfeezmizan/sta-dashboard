@@ -1,17 +1,16 @@
 import React from 'react'
-import DashboardHeader from './DashboardHeader/DashboardHeader'
-import DashboardSummaryCards from './DashboardSummaryCards/DashboardSummaryCards'
-import BarCharts from './Chars/BarCharts'
 import AreaChart from './Chars/AreaChart'
+import BarCharts from './Chars/BarCharts'
 import OutletStatisticsChart from './Chars/OutletStatisticsChart'
+import DashboardSummaryCards from './DashboardSummaryCards/DashboardSummaryCards'
 import FeedbackTable from './FeedbackTable/FeedbackTable'
 
 export default function Dashboard() {
     return (
         <div>
-            <DashboardHeader />
             <div className="w-4/5 mx-auto p-4">
                 <DashboardSummaryCards />
+
 
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 mt-6">
                     <BarCharts />

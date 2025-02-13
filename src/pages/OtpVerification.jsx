@@ -9,7 +9,6 @@ export default function OtpVerification() {
         console.log('Verification Code:', code);
     };
 
-    // Automatically focus the first input on component mount
     React.useEffect(() => {
         setFocus('digit1');
     }, [setFocus]);

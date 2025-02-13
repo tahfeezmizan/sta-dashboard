@@ -25,8 +25,12 @@ export default function Login() {
 
     const onSubmit = async (data) => {
         try {
-            await login(data).unwrap();
-            console.log("Registration successful!", data);
+            const result = await login(data).unwrap();
+            const token = result.data.accessToken;
+
+            Cookies.set('auth_token', token, { expires: 7, secure: true, sameSite: 'Strict' });
+
+            console.log(result.data.accessToken);
             toast("User Register Sucessfully")
             navigate('/dashboard')
         } catch (error) {

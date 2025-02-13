@@ -28,6 +28,11 @@ const FeedbackTable = () => {
             title: "Provider",
             dataIndex: "provider",
             key: "provider",
+            render: ({ name, avatar }) => (
+                <Space onClick={() => handleRowClick(name)} className="cursor-pointer">
+                    <span className="font-semibold">{name}</span>
+                </Space>
+            ),
         },
         {
             title: "Review",
@@ -67,7 +72,47 @@ const FeedbackTable = () => {
             },
             review: 4.5,
             comment: "Dui at tortor. nisi vitae Nullam adipiscing malesuada faucibus sit lacus orci Nam ac convallis."
-        }
+        },
+        {
+            key: "1",
+            id: "1239",
+            user: {
+                name: "Basar",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKddLtVjZ-PtpofGgkLxpbHrqFbAkVAIagPQ&s",
+                email: "basar@gmail.com",
+                address: "76/4 R no. 60/1 Rue des Saints-Paris, 75005 Paris",
+                phone: "+099999",
+            },
+            provider: {
+                name: "Mr. Dibala ",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAhWFq7-37o5SrtEVZxPma4W2OcJPcpihIvQ&s",
+                email: "mrdibala@gmail.com",
+                address: "15 Rue des Saints-Paris, 75006 Paris",
+                phone: "+092578",
+            },
+            review: 4.5,
+            comment: "Dui at tortor. nisi vitae Nullam adipiscing malesuada faucibus sit lacus orci Nam ac convallis."
+        },
+        {
+            key: "1",
+            id: "1239",
+            user: {
+                name: "Mr. Mahmud",
+                avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+                email: "mahmud@gmail.com",
+                address: "76/4 R no. 60/1 Rue des Saints-Paris, 75005 Paris",
+                phone: "+099999",
+            },
+            provider: {
+                name: "Mr. Jone",
+                avatar: "https://randomuser.me/api/portraits/men/2.jpg",
+                email: "jone@gmail.com",
+                address: "15 Rue des Saints-Paris, 75006 Paris",
+                phone: "+092578",
+            },
+            review: 4.5,
+            comment: "Dui at tortor. nisi vitae Nullam adipiscing malesuada faucibus sit lacus orci Nam ac convallis."
+        },
     ];
 
     const handleRowClick = (name) => {

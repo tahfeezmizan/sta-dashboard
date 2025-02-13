@@ -17,10 +17,39 @@ const authApi = baseApi.injectEndpoints({
                 body: credentials,
                 credentials: "omit"
             })
+        }),
+        verifyEmail: build.mutation({
+            query: (emailData) => ({
+                url: "/user/auth/verify-email",
+                method: "POST",
+                body: emailData
+            })
+        }),
+        resendVerificationCode: build.mutation({
+            query: (resendCodeData) => ({
+                url: "/user/auth/email-verification/resend-code",
+                method: "POST",
+                body: resendCodeData
+            })
+        }),
+
+        sendForgetPasswordOTP: build.mutation({
+            query: (email) => ({
+                url: "/auth/forget-password/send-otp",
+                method: "POST",
+                body: email
+            })
+        }),
+        verifyOTP: build.mutation({
+            query: ({ email, otp }) => ({
+                url: "/auth/verify-otp",
+                method: "POST",
+                body: { email, otp }
+            })
         })
     }),
 })
 
 
-export const { useSingupMutation, useLoginMutation } = authApi;
+export const { useSingupMutation, useLoginMutation, useVerifyEmailMutation, resendCodeData, useSendForgetPasswordOTPMutation } = authApi;
 export default authApi;

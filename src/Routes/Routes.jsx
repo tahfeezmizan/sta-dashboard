@@ -5,37 +5,81 @@ import ForgotPassword from "../pages/ForgotPassword";
 import SetNewPassword from "../pages/SetNewPassword";
 import OtpVerification from "../pages/OtpVerification";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import Profile from "../pages/Dashboard/Profile";
+import ChangePassword from "../pages/Dashboard/Profile/ChangePassword";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import UserTable from "../pages/Dashboard/Profile/UserTable";
+import App from "../App";
+import DashboardLayOut from "../layout/DashboardLayOut";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Register />,
+        element: <App />,
+        children: [
+            {
+                index: true,
+                element: <Register />,
+            },
+            {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/forgot-password",
+                element: <ForgotPassword />,
+            },
+            {
+                path: "/set-new-password",
+                element: <SetNewPassword />,
+            },
+            {
+                path: "/otp-verification",
+                element: <OtpVerification />,
+            },
+        ]
+    },
+
+    {
+        path: "dashboard",
+        element: <DashboardLayOut />,
+        children: [
+            {
+                index: true,
+                element: <Dashboard />
+            },
+        ]
     },
     {
-        path: "/login",
-        element: <Login />,
+        path: "profile",
+        element: <DashboardLayOut />,
+        children: [
+            {
+                index: true,
+                element: <Profile />
+            },
+        ]
     },
     {
-        path: "/forgot-password",
-        element: <ForgotPassword />,
+        path: "change-password",
+        element: <DashboardLayOut />,
+        children: [
+            {
+                index: true,
+                element: <ChangePassword />
+            },
+        ]
     },
     {
-        path: "/set-new-password",
-        element: <SetNewPassword />,
+        path: "user-list",
+        element: <DashboardLayOut />,
+        children: [
+            {
+                index: true,
+                element: <UserTable />
+            },
+        ]
     },
-    {
-        path: "/otp-verification",
-        element: <OtpVerification />,
-    },
-    {
-        path: "/dashboard",
-        element: <Dashboard />,
-    },
-    {
-        path: 'profile',
-        element: <Profile />
-    }
+
 ]);
 
 export default router;
