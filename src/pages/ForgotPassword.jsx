@@ -16,10 +16,11 @@ export default function ForgotPassword() {
 
 
     const onSubmit = async (data) => {
-        console.log(data);
+        const email = data.email
+        console.log("Regusest Email ", email);
         try {
             const result = await sendOtp(email).unwrap();
-            console.log(result);
+            console.log('Backend Response', result);
             toast.success("OTP sent successfully! Check your email.");
 
         } catch (error) {

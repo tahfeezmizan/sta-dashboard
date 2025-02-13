@@ -1,12 +1,26 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useVerifyOTPMutation } from '../redux/api/auth/authApi';
+import { toast } from 'react-toastify';
 
 export default function OtpVerification() {
     const { register, handleSubmit, setFocus } = useForm();
 
-    const onSubmit = (data) => {
+    const [verifyOTP, { isLoadign }] = useVerifyOTPMutation();
+
+    const onSubmit = async (data) => {
         const code = Object.values(data).join('');
         console.log('Verification Code:', code);
+
+        try {
+            const result = await verifyOTP({ email, code }).unwrap();
+            console.log("Verifed Res",result);
+            toast.success("OTP verified successfully!");
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error?.data?.message || "Invalid OTP, please try again.");
+        }
     };
 
     React.useEffect(() => {
@@ -23,7 +37,7 @@ export default function OtpVerification() {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
                     <div className="flex space-x-3 mb-6">
-                        {[...Array(5)].map((_, index) => (
+                        {[...Array(4)].map((_, index) => (
                             <input
                                 key={index}
                                 type="text"

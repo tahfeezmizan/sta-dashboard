@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSingupMutation } from "../../redux/api/auth/authApi";  // Import the hook
 import { toast } from "react-toastify";
 
 export default function Register() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -27,10 +28,12 @@ export default function Register() {
 
     const onSubmit = async (data) => {
         try {
-            await singup(data).unwrap();
-            console.log("Registration successful!", data);
-            toast("User Register Sucessfully")
+            const res = await singup(data).unwrap();
+            console.log("Registration successful!", res);
 
+            toast("User Register Sucessfully");
+
+            navigate("/login")
         } catch (err) {
             console.error("Registration failed:", err);
             toast.error(error.message)

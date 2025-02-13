@@ -6,10 +6,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useLoginMutation } from "../redux/api/auth/authApi";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/features/authSlices/authSlices";
+import { verifyToken } from "../utils/verifyToken";
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate(); // For redirecting after login
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [login, { isLoading, error }] = useLoginMutation();
 
@@ -28,11 +32,17 @@ export default function Login() {
             const result = await login(data).unwrap();
             const token = result.data.accessToken;
 
+            const user = verifyToken(token);
+            dispatch(setUser({ user: user, token: token }));
+
+            console.log("Login User", user);
+
             Cookies.set('auth_token', token, { expires: 7, secure: true, sameSite: 'Strict' });
 
             console.log(result.data.accessToken);
             toast("User Register Sucessfully")
-            navigate('/dashboard')
+            navigate('/otp-verification')
+
         } catch (error) {
             toast.error(error.message)
         }
