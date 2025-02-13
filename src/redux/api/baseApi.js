@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Cookies from "js-cookie";
 
 const baseApi = createApi({
     reducerPath: "baseApi",
@@ -7,12 +6,13 @@ const baseApi = createApi({
         baseUrl: "https://outlet-appointment-booking.onrender.com/v1",
         credentials: "include",
         prepareHeaders: (headers) => {
-            const token = Cookies.get("auth_token");
+            const token = localStorage.getItem("token");
 
             if (token) {
                 headers.set("Authorization", `Bearer ${token}`);
             }
 
+            headers.set("Content-Type", "application/json");
             return headers;
         }
     }),

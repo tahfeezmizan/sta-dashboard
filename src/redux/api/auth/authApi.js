@@ -42,14 +42,37 @@ const authApi = baseApi.injectEndpoints({
         }),
         verifyOTP: build.mutation({
             query: ({ email, code }) => ({
-                url: "/user/auth/verify-email",
+                url: '/user/auth/verify-email',
+                method: 'POST',
+                body: { email, code },
+            }),
+        }),
+        resendVerificationCode: build.mutation({
+            query: ({ email }) => ({
+                url: '/user/auth/email-verification/resend-code',
+                method: 'POST',
+                body: { email },
+            }),
+        }),
+        changePassword: build.mutation({
+            query: (data) => ({
+                url: "/auth/admin/change-password",
                 method: "POST",
-                body: { email, code }
-            })
+                body: data,
+            }),
         })
     }),
 })
 
 
-export const { useSingupMutation, useLoginMutation, useVerifyEmailMutation, resendCodeData, useSendForgetPasswordOTPMutation, useVerifyOTPMutation } = authApi;
+export const {
+    resendCodeData,
+    useLoginMutation,
+    useSingupMutation,
+    useVerifyOTPMutation,
+    useVerifyEmailMutation,
+    useChangePasswordMutation,
+    useSendForgetPasswordOTPMutation,
+    useResendVerificationCodeMutation,
+} = authApi;
 export default authApi;

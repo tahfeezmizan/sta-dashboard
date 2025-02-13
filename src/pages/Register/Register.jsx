@@ -33,7 +33,7 @@ export default function Register() {
 
             toast("User Register Sucessfully");
 
-            navigate("/login")
+            navigate(`/otp-verification/${data.email}`)
         } catch (err) {
             console.error("Registration failed:", err);
             toast.error(error.message)

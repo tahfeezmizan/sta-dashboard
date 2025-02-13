@@ -35,11 +35,7 @@ export default function Login() {
             const user = verifyToken(token);
             dispatch(setUser({ user: user, token: token }));
 
-            console.log("Login User", user);
-
-            Cookies.set('auth_token', token, { expires: 7, secure: true, sameSite: 'Strict' });
-
-            console.log(result.data.accessToken);
+            // console.log(result.data.accessToken);
             toast("User Register Sucessfully")
             navigate('/otp-verification')
 

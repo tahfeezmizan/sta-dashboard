@@ -12,7 +12,7 @@ export default function DashboardHeader() {
                     <div
                         className="flex items-center space-x-2 cursor-pointer"
                         onClick={() => setIsDropdownOpen(true)}
-                        
+
                     >
                         <img
                             src="https://png.pngtree.com/png-clipart/20191122/original/pngtree-user-icon-isolated-on-abstract-background-png-image_5192004.jpg"
@@ -31,8 +31,8 @@ export default function DashboardHeader() {
                             <Link to="/profile" className="block px-4 py-2 hover:bg-gray-200">
                                 Profile
                             </Link>
-                            <Link to="/settings" className="block px-4 py-2 hover:bg-gray-200">
-                                Settings
+                            <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-200">
+                                Dashboard
                             </Link>
                             <Link to="/logout" className="block px-4 py-2 hover:bg-gray-200">
                                 Logout

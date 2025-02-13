@@ -50,7 +50,7 @@ export default function Profile() {
                 <Tabs defaultActiveKey="1" centered onChange={handleTabChange}>
                     <TabPane tab={<span className="text-pink-500 font-semibold">Edit Profile</span>} key="1">
                         {/* Edit Profile Form */}
-                        <div className="bg-white p-6 shadow rounded-lg mt-4">
+                        <div className="bg-white p-6 mt-4">
                             <h3 className="text-lg font-semibold text-center mb-4">Edit Your Profile</h3>
                             <div className="space-y-4">
                                 <div>

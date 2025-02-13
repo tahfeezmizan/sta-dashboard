@@ -4,9 +4,7 @@ import { useSendForgetPasswordOTPMutation } from '../redux/api/auth/authApi';
 import { toast } from 'react-toastify';
 
 export default function ForgotPassword() {
-
-    const [sendOtp, { isLoading }
-    ] = useSendForgetPasswordOTPMutation()
+    const [sendOtp, { isLoading } ] = useSendForgetPasswordOTPMutation()
 
     const {
         register,

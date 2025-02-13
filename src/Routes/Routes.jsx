@@ -33,7 +33,7 @@ const router = createBrowserRouter([
                 element: <SetNewPassword />,
             },
             {
-                path: "/otp-verification",
+                path: "/otp-verification/:email",
                 element: <OtpVerification />,
             },
         ]
