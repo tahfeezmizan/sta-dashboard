@@ -9,7 +9,7 @@ export default function Dashboard() {
 
     return (
         <div>
-            <div className="w-4/5 mx-auto p-4">
+            <div className="md:w-4/5 mx-auto w-full p-4">
                 <DashboardSummaryCards />
 
 

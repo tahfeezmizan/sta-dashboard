@@ -74,7 +74,7 @@ const FeedbackTable = () => {
             comment: "Dui at tortor. nisi vitae Nullam adipiscing malesuada faucibus sit lacus orci Nam ac convallis."
         },
         {
-            key: "1",
+            key: "2",
             id: "1239",
             user: {
                 name: "Basar",
@@ -94,7 +94,7 @@ const FeedbackTable = () => {
             comment: "Dui at tortor. nisi vitae Nullam adipiscing malesuada faucibus sit lacus orci Nam ac convallis."
         },
         {
-            key: "1",
+            key: "3",
             id: "1239",
             user: {
                 name: "Mr. Mahmud",

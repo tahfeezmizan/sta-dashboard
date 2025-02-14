@@ -70,7 +70,7 @@ const UserTable = () => {
     };
 
     return (
-    <div className="w-5/6 mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
+    <div className="md:w-5/6 w-full mx-auto mt-6 p-6 bg-white overflow-x-auto rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-4">All User Details</h2>
             <Table
                 columns={columns}
