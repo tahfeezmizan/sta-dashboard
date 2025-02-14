@@ -1,31 +1,50 @@
-Project Overview
+# User Authentication and Verification System
 
-This project implements a user authentication and verification system with full responsiveness across all devices. The system includes user registration, login, email verification, OTP-based password recovery, and password reset functionalities.
+This project implements a user authentication and verification system with full responsiveness across all devices. The system includes user registration, login, email verification, OTP-based password reset, and password reset functionalities.
 
-Completed Features
+## Features
 
-User Registration, Login, Email Verification, OTP Verification, Password Reset, and API Integration.
+- **User Authentication**
+  - User Registration
+  - Login
+  - Email Verification
+  - OTP Verification
+  - Password Reset
+  - API Integration
 
-Design Implementation
+## Design Implementation
 
-The application is fully responsive and adapts to different screen.
+- Fully responsive across all devices.
+- Utilizes **Ant Design** and **TailwindCSS** for UI components and styling.
 
-Issues Faced & Solutions
+## Issues Faced & Solutions
 
-1. CORS Error on OTP Verification API
+### 1. CORS Error on OTP Verification API
+- **Problem:** Encountered CORS issues when calling the verify OTP API.
+- **Solution:** Configured the backend server to allow proper CORS handling.
 
-Problem: Encountered CORS issues when calling the verify OTP API.
+### 2. Verification Code Resend Issue
+- **Problem:** The resend OTP feature was not functioning properly.
+- **Solution:** Updated API request headers and ensured correct email parsing.
 
-Solution: Configured the backend server to allow proper CORS handling.
+### 3. Full Name Not Adding During Registration
+- **Problem:** User's full name was not being stored.
+- **Solution:** Fixed API payload structure and ensured that `fullName` was correctly passed in the request.
 
-2. Verification Code Resend Issue
+## Project Setup
 
-Problem: The resend OTP feature was not functioning properly.
+### Install Dependencies
+```sh
+npm install
+```
 
-Solution: Updated API request headers and ensured correct email parsing.
+### Run the Project
+```sh
+npm start
+```
 
-3. Full Name Not Adding During Registration
+## Live Link
+[STA Dashboard](https://sta-dashboard-nine.vercel.app/)
 
-Problem: User's full name was not being stored.
-
-Solution: Fixed API payload structure and ensured that fullName was correctly passed in the request.
+## GitHub Repository
+[GitHub Repo](https://github.com/tahfeezmizan/sta-dashboard.git)
