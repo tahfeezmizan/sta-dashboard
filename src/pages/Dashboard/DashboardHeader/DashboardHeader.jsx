@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../../redux/features/authSlices/authSlices';
@@ -6,8 +6,20 @@ import { logOut } from '../../../redux/features/authSlices/authSlices';
 
 export default function DashboardHeader() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [userEmail, setUserEmail] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedData = localStorage.getItem("persist:auth");
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            const user = JSON.parse(parsedData.user);
+            setUserEmail(user.email);
+        }
+    }, []);
+
+
 
     const handleLogout = () => {
         dispatch(logOut());

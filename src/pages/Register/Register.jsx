@@ -9,7 +9,7 @@ export default function Register() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [singup, { isLoading, error }] = useSingupMutation();    
+    const [singup, { isLoading, error }] = useSingupMutation();
 
     const {
         register,
@@ -26,8 +26,21 @@ export default function Register() {
     };
 
     const onSubmit = async (data) => {
+        const formattedData = {
+            fullName: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            password: data.password,
+            referralCode: null,
+            isSocial: false,
+            fcmToken: null
+        };
+
+        console.log(formattedData);
+
+
         try {
-            const res = await singup(data).unwrap();
+            const res = await singup(formattedData).unwrap();
             console.log("Registration successful!", res);
             toast("User Register Sucessfully");
             navigate(`/otp-verification/${data.email}`)
